@@ -19,10 +19,13 @@ export const registerUserThunk = createAsyncThunk(
   async (userData, thunkApi) => {
     try {
       const { data } = await $inctanse.post('/users/signup', userData);
-      console.log(data);
+      // console.log(data);
       setToken(data.token);
       return data;
     } catch (error) {
+      alert(
+        'An error occurred, perhaps such an account is already registered, try another account name or address'
+      );
       return thunkApi.rejectWithValue(error.message);
     }
   }

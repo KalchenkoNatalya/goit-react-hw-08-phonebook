@@ -8,9 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(209,126,227);
-  background: linear-gradient(90deg, rgba(209,126,227,1) 0%, rgba(140,215,231,0.9528186274509804) 100%);
- 
+  background: rgb(209, 126, 227);
+  background: linear-gradient(90deg, rgba(209, 126, 227, 1) 0%, rgba(140, 215, 231, 0.9528186274509804) 100%);
+
 }
 
 code {
@@ -21,7 +21,8 @@ code {
 
 
 ul,
-li {
+li,
+p {
   margin: 0;
   padding: 0;
 }
@@ -29,4 +30,8 @@ li {
 ul,
 li {
   list-style: none;
+}
+
+section {
+	padding: 20px;
 }

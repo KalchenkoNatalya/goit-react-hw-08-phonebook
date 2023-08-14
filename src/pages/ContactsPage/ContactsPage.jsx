@@ -14,6 +14,9 @@ import {
   selectUserContacts,
 } from 'redux/contactsReduser';
 import { selectVisibleContacts } from 'redux/selectors';
+// import Modal from 'react-modal';
+
+
 
 const ContactsPage = () => {
   const authentificated = useSelector(selecAuthentificated);
@@ -29,35 +32,17 @@ const ContactsPage = () => {
     dispatch(requestContatsThunk());
   }, [authentificated, dispatch]);
 
-//   const handleAddContact = event => {
-//     event.preventDefault();
-//     const form = event.currentTarget;
-//     const name = form.elements.contactName.value;
-//     const number = form.elements.contactNumber.value;
-//     if (contacts.some(contact => contact.name === name))
-//       return alert(`Contact with name ${name} already exists `);
-//     dispatch(addContactThunk({ name, number }));
-//     form.reset();
-//   };
+
   const handleDeleteContact =  contactId => {
     console.log(contactId);
+    
     dispatch(deleteContactThunk(contactId));
   };
 
   const showContacts = Array.isArray(contacts) && contacts.length > 0;
   return (
     <section>
-      {/* <form onSubmit={handleAddContact}>
-        <label>
-          <p>Name</p>
-          <input name="contactName" type="text" required></input>
-        </label>
-        <label>
-          <p>Number</p>
-          <input name="contactNumber" type="text" required></input>
-        </label>
-        <button type="submit">Add contact</button>
-      </form> */}
+  
       <FormAddContacts />
       <div>
         {isLoading && <Loader />}
@@ -66,7 +51,7 @@ const ContactsPage = () => {
         <h2>Find contacts by name</h2>
         <Filter valueFilter={filter} />
 
-        <h2>Contacts</h2>
+        <h2>Your contacts list</h2>
 
         {showContacts &&
           (filter === '' ? (
@@ -77,23 +62,6 @@ const ContactsPage = () => {
           ) : (
             <ContactList contacts={filteredContacts} />
           ))}
-
-        {/* {showContacts &&
-          contacts.map(contact => {
-            return (
-              <li key={contact.id}>
-                <h3>Name: {contact.name}</h3>
-                <p>Number: {contact.number}</p>
-                <button
-                  type="button"
-                  onClick={() => handleDeleteContact(contact.id)}
-                  aria-label="Delete contact"
-                >
-                  &times;
-                </button>
-              </li>
-            );
-          })} */}
       </div>
     </section>
   );

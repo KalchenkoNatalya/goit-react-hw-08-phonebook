@@ -1,31 +1,37 @@
-.wrap {
-    padding-top: 50px;
-    margin: 0 auto;
-    width: 400px;
+.container {
+	padding-top: 50px;
+	margin: 0 auto;
+	width: 500px;
 
 }
 
 h2 {
-    margin-top: 15px;
-    margin-bottom: 15px;
-   
+	margin-top: 15px;
+	margin-bottom: 15px;
+
 }
 
 header {
-	padding-top: 20px;
+	padding: 20px;
 	padding-bottom: 20px;
 	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-	background-color:  rgba(209,126,227,1) ;
+	background-color: rgba(209, 126, 227, 1);
 }
 
-section {
-	padding: 20px;
+.headerContent {
+	margin: 0 auto;
 }
 
-.nav_list {
+
+.nav_list_contact_logout {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+
+}
+.nav_list_register{
 	display: flex;
 	gap: 20px;
-	padding-left: 20px;
 }
 
 .nav_item {
@@ -46,6 +52,39 @@ section {
 
 	&:hover,
 	&:focus {
-		color:  rgba(140, 215, 231, 0.9528186274509804);
+		color: rgba(140, 215, 231, 0.9528186274509804);
 	}
+}
+
+.userData {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.btnLogout {
+	width: 120px;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.btnLogout:hover,
+.btnLogout:focus {
+	background-color: rgba(140, 215, 231, 0.9528186274509804);
+}
+
+.welcomeText {
+	font-size: 30px;
+	font-style: italic;
+	text-align: center;
+	line-height: normal;
+}
+
+.mainSection {
+	max-width: 450px;
+	margin: 0 auto;
+	padding: 20px;
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { selecAuthentificated } from 'redux/authReducer';
 import { loginUserThunk } from 'redux/operations';
+import css from "./LoginPage.module.css"
 
 const LoginPage = () => {const dispatch = useDispatch();
   const authentificated = useSelector(selecAuthentificated);
@@ -23,8 +24,8 @@ const LoginPage = () => {const dispatch = useDispatch();
 
   if (authentificated) return <Navigate to="/contacts"/>
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <section>
+      <form className={css.loginForm}onSubmit={handleSubmit}>
         <label>
           <p>Email</p>
           <input name="userEmail" type="email" required></input>
@@ -38,9 +39,9 @@ const LoginPage = () => {const dispatch = useDispatch();
             minLength={8}
           ></input>
         </label>
-        <button type="submit">Sign in</button>
+        <button className={css.btnSignIn}type="submit">Sign in</button>
       </form>
-    </div>
+    </section>
   );
 };
 

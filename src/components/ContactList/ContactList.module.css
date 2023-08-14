@@ -1,18 +1,28 @@
+.contactList {
+    width: 100%;
+}
 .item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
 }
-
+.contactText {
+    font-size: 18px;
+}
 .btnRemove {
-    width: 70px;
+
+    width: 50px;
     height: 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+
 }
 
 .btnRemove:hover,
 .btnRemove:focus {
-    background-color: rgba(209,126,227,1);
+    background-color: rgba(209, 126, 227, 1);
     border: none;
 }
-

@@ -3,10 +3,10 @@ import css from './ContactList.module.css';
 
 export const ContactList = ({ contacts, onRemoveContacts }) => {
   return (
-    <ul>
+    <ul className={css.contactList}>
       {contacts.map(contact => (
         <li key={contact.id} className={css.item}>
-          <p>
+          <p className={css.contactText}>
             {contact.name}: {contact.number}
           </p>
           <button

@@ -1,13 +1,11 @@
 import css from './FormAddContacts.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactThunk,  selectUserContacts } from 'redux/contactsReduser';
-
+import { addContactThunk, selectUserContacts } from 'redux/contactsReduser';
 
 export const FormAddContacts = () => {
   const contacts = useSelector(selectUserContacts);
   const dispatch = useDispatch();
-
 
   const handleAddContact = event => {
     event.preventDefault();
@@ -21,19 +19,21 @@ export const FormAddContacts = () => {
   };
 
   return (
-    <form onSubmit={handleAddContact}>
-        <label>
-          <p>Name</p>
-          <input name="contactName" type="text" required></input>
-        </label>
-        <label>
-          <p>Number</p>
-          <input name="contactNumber" type="text" required></input>
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+    <form onSubmit={handleAddContact} className={css.formAddContacts}>
+      <label>
+        <p>Name</p>
+        <input name="contactName" type="text" required></input>
+      </label>
+      <label>
+        <p>Number</p>
+        <input name="contactNumber" type="text" required></input>
+      </label>
+      <button className={css.btnAddContact} type="submit">
+        Add contact
+      </button>
+    </form>
   );
-};
+}
 
 FormAddContacts.propTypes = {
   state: PropTypes.shape({
@@ -42,4 +42,3 @@ FormAddContacts.propTypes = {
   }),
   handleAddContact: PropTypes.func,
 };
-

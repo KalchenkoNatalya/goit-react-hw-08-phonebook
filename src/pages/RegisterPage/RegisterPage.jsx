@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Navigate } from 'react-router-dom';
 import { selecAuthentificated } from 'redux/authReducer';
 import { registerUserThunk } from 'redux/operations';
+import css from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const isauthentificated = useSelector(state => state.auth.authentificated);
-  const authentificated = useSelector(selecAuthentificated)
+  const authentificated = useSelector(selecAuthentificated);
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -21,15 +22,20 @@ const RegisterPage = () => {
     };
     dispatch(registerUserThunk(finalUserData));
   };
-  console.log(isauthentificated);
+
+
+  // console.log(isauthentificated);
+
+  // isauthentificated ? alert('Your account has been successfully registered') : alert("An error occurred, perhaps such an account is already registered, try another account name or address");
+
   if (isauthentificated) {
     alert('Your account has been successfully registered');
   }
-  if (authentificated) return <Navigate to="/contacts"/>
+  if (authentificated) return <Navigate to="/contacts" />;
   return (
-    <div>
-      <h1>Register your account</h1>
-      <form onSubmit={handleSubmit}>
+    <section>
+      <h2 className={css.titleRegister}>Register your account</h2>
+      <form className={css.registerForm} onSubmit={handleSubmit}>
         <label>
           <p>Name</p>
           <input name="userName" type="text" required minLength={2}></input>
@@ -47,15 +53,17 @@ const RegisterPage = () => {
             minLength={8}
           ></input>
         </label>
-        <button type="submit">Sign Up</button>
+        <button className={css.btnSignUp} type="submit">
+          Sign Up
+        </button>
       </form>
-      <p>
+      <p className={css.text}>
         If you alredy have account, sign in{' '}
         <span>
           <NavLink to="/login">here</NavLink>
         </span>
       </p>
-    </div>
+    </section>
   );
 };
 export default RegisterPage;

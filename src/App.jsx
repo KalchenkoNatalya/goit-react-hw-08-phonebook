@@ -4,21 +4,24 @@ import { Suspense, lazy, useEffect } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { selecAuthentificated, selectToken, selectUserData } from 'redux/authReducer';
+import {
+  selecAuthentificated,
+  selectToken,
+  selectUserData,
+} from 'redux/authReducer';
 import { logoutUserThunk, refreshUserThunk } from 'redux/operations';
 import PrivateRoute from 'components/privatRoute/privatRoute';
-import UseMenu from 'components/UseMenu/UseMenu';
 
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const authentificated = useSelector(selecAuthentificated);
-  const userData = useSelector(selectUserData)
-  console.log(userData)
+  const userData = useSelector(selectUserData);
+  console.log(userData);
 
   useEffect(() => {
     if (!token || authentificated) return;
@@ -31,25 +34,27 @@ export const App = () => {
   return (
     <div>
       <header className={css.header}>
-        <nav>
+        <nav className={css.headerContent}>
           {authentificated ? (
             <>
-              <ul className={css.nav_list}>
+              <ul className={css.nav_list_contact_logout}>
                 <li>
                   {' '}
                   <NavLink to="/contacts" className={css.nav_link}>
                     Contacts
                   </NavLink>
                 </li>
-                <li>
-                <p>{userData.email}</p>
-                  <button onClick={handleLogout}>Logout</button>
+                <li className={css.userData}>
+                  <p>{userData.email}</p>
+                  <button className={css.btnLogout} onClick={handleLogout}>
+                    Logout
+                  </button>
                 </li>
               </ul>
             </>
           ) : (
             <>
-              <ul className={css.nav_list}>
+              <ul className={css.nav_list_register}>
                 {' '}
                 <li>
                   <NavLink to="/register" className={css.nav_link}>
@@ -67,7 +72,7 @@ export const App = () => {
           )}
         </nav>
       </header>
-      <main>
+      <main className={css.mainSection}>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
@@ -75,7 +80,7 @@ export const App = () => {
             <Route
               path="/contacts"
               element={
-                <PrivateRoute redirectTo='/login'>
+                <PrivateRoute redirectTo="/login">
                   <ContactsPage />
                 </PrivateRoute>
               }
@@ -83,11 +88,20 @@ export const App = () => {
             <Route
               path="*"
               element={
-                <p>
-                  welcome to the application, choose register if you are just
-                  going to register or login if you already have a registered
-                  account
-                </p>
+                !authentificated ? (
+                  <p className={css.welcomeText}>
+                    Welcome to the application, choose{' '}
+                    <span>
+                      <NavLink to="/register">register</NavLink>
+                    </span>{' '}
+                    if you are just going to register or <NavLink to="/login">login</NavLink>  if you already
+                    have a registered account
+                  </p>
+                ) : (
+                  <PrivateRoute redirectTo="/login">
+                    <ContactsPage />
+                  </PrivateRoute>
+                )
               }
             />
           </Routes>
@@ -101,5 +115,4 @@ App.propTypes = {
   token: PropTypes.string,
   authentificated: PropTypes.bool,
   handleLogout: PropTypes.func,
- 
 };
