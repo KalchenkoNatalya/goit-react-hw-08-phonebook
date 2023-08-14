@@ -1,17 +1,13 @@
-// import { FormAddContacts } from './FormAddContacts/FormAddContacts';
-// import { Filter } from './Filter/Filter';
-// import { ContactList } from './ContactList/ContactList';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectVisibleContacts } from 'redux/selectors';
-
 import css from './App.module.css';
 import PropTypes from 'prop-types';
 import { Suspense, lazy, useEffect } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { selecAuthentificated, selectToken } from 'redux/authReducer';
+import { selecAuthentificated, selectToken, selectUserData } from 'redux/authReducer';
 import { logoutUserThunk, refreshUserThunk } from 'redux/operations';
+import PrivateRoute from 'components/privatRoute/privatRoute';
+import UseMenu from 'components/UseMenu/UseMenu';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
@@ -21,11 +17,14 @@ export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const authentificated = useSelector(selecAuthentificated);
+  const userData = useSelector(selectUserData)
+  console.log(userData)
+
   useEffect(() => {
     if (!token || authentificated) return;
     dispatch(refreshUserThunk());
   }, [token, dispatch, authentificated]);
-  
+
   const handleLogout = () => {
     dispatch(logoutUserThunk());
   };
@@ -43,6 +42,7 @@ export const App = () => {
                   </NavLink>
                 </li>
                 <li>
+                <p>{userData.email}</p>
                   <button onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
@@ -72,7 +72,14 @@ export const App = () => {
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/contacts" element={<ContactsPage/>} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo='/login'>
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="*"
               element={
@@ -86,21 +93,13 @@ export const App = () => {
           </Routes>
         </Suspense>
       </main>
- 
     </div>
   );
 };
 
 App.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  filter: PropTypes.string,
-  filterChange: PropTypes.func,
-  addContacts: PropTypes.func,
-  onRemoveContacts: PropTypes.func,
+  token: PropTypes.string,
+  authentificated: PropTypes.bool,
+  handleLogout: PropTypes.func,
+ 
 };

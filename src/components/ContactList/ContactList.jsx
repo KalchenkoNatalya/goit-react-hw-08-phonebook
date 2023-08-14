@@ -7,13 +7,14 @@ export const ContactList = ({ contacts, onRemoveContacts }) => {
       {contacts.map(contact => (
         <li key={contact.id} className={css.item}>
           <p>
-            {contact.name}: {contact.phone}
+            {contact.name}: {contact.number}
           </p>
           <button
             onClick={() => onRemoveContacts(contact.id)}
             className={css.btnRemove}
+            aria-label="Delete contact"
           >
-            Remove
+             &times;
           </button>
         </li>
       ))}
