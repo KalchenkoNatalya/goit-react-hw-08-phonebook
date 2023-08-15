@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { selecAuthentificated } from 'redux/authReducer';
 import { loginUserThunk } from 'redux/operations';
-import css from "./LoginPage.module.css"
+import css from './LoginPage.module.css';
 
-const LoginPage = () => {const dispatch = useDispatch();
+const LoginPage = () => {
+  const dispatch = useDispatch();
   const authentificated = useSelector(selecAuthentificated);
-  
+
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -18,14 +19,13 @@ const LoginPage = () => {const dispatch = useDispatch();
       email,
       password,
     };
-    dispatch(loginUserThunk(userData))
-    
+    dispatch(loginUserThunk(userData));
   };
 
-  if (authentificated) return <Navigate to="/contacts"/>
+  if (authentificated) return <Navigate to="/contacts" />;
   return (
     <section>
-      <form className={css.loginForm}onSubmit={handleSubmit}>
+      <form className={css.loginForm} onSubmit={handleSubmit}>
         <label>
           <p>Email</p>
           <input name="userEmail" type="email" required></input>
@@ -39,7 +39,9 @@ const LoginPage = () => {const dispatch = useDispatch();
             minLength={8}
           ></input>
         </label>
-        <button className={css.btnSignIn}type="submit">Sign in</button>
+        <button className={css.btnSignIn} type="submit">
+          Sign in
+        </button>
       </form>
     </section>
   );

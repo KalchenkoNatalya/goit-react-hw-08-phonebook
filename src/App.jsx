@@ -21,7 +21,6 @@ export const App = () => {
   const token = useSelector(selectToken);
   const authentificated = useSelector(selecAuthentificated);
   const userData = useSelector(selectUserData);
-  console.log(userData);
 
   useEffect(() => {
     if (!token || authentificated) return;
@@ -94,8 +93,9 @@ export const App = () => {
                     <span>
                       <NavLink to="/register">register</NavLink>
                     </span>{' '}
-                    if you are just going to register or <NavLink to="/login">login</NavLink>  if you already
-                    have a registered account
+                    if you are just going to register or{' '}
+                    <NavLink to="/login">login</NavLink> if you already have a
+                    registered account
                   </p>
                 ) : (
                   <PrivateRoute redirectTo="/login">

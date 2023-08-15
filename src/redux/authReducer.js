@@ -13,7 +13,6 @@ const initialContactsState = {
   userData: null,
   authentificated: false,
   token: null,
-
 };
 
 const authSlice = createSlice({

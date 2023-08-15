@@ -23,11 +23,6 @@ const RegisterPage = () => {
     dispatch(registerUserThunk(finalUserData));
   };
 
-
-  // console.log(isauthentificated);
-
-  // isauthentificated ? alert('Your account has been successfully registered') : alert("An error occurred, perhaps such an account is already registered, try another account name or address");
-
   if (isauthentificated) {
     alert('Your account has been successfully registered');
   }

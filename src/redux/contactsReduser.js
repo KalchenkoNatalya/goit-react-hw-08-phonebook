@@ -18,7 +18,7 @@ export const addContactThunk = createAsyncThunk(
   async (newContact, thunkApi) => {
     try {
       const { data } = await $inctanse.post('/contacts', newContact);
-      console.log('data:', data);
+      // console.log('data:', data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -31,7 +31,7 @@ export const deleteContactThunk = createAsyncThunk(
   async (contactId, thunkApi) => {
     try {
       const { data } = await $inctanse.delete(`/contacts/${contactId}`);
-      console.log('data:', data);
+      // console.log('data:', data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

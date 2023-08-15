@@ -1,0 +1,39 @@
+.modal {
+    padding-top: 20%;
+}
+
+.textModal {
+    font-size: 30px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.btnModalWrap {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btnModal {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+    background-color: rgba(209, 126, 227, 1);
+    border: none;
+}
+
+.modalConfirm {
+    color: green;
+}
+
+.modalCancel {
+    color: brown;
+}

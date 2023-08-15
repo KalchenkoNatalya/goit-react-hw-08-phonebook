@@ -19,7 +19,6 @@ export const registerUserThunk = createAsyncThunk(
   async (userData, thunkApi) => {
     try {
       const { data } = await $inctanse.post('/users/signup', userData);
-      // console.log(data);
       setToken(data.token);
       return data;
     } catch (error) {
@@ -49,7 +48,7 @@ export const refreshUserThunk = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     const token = state.auth.token;
-    console.log(token);
+    // console.log(token);
     try {
       setToken(token);
       const { data } = await $inctanse.get('/users/current');

@@ -3,9 +3,11 @@
     flex-direction: column;
     width: 100%;
 }
+
 .loginForm p {
     font-size: 20px;
 }
+
 .loginForm input {
     margin-top: 5px;
     margin-bottom: 15px;
@@ -14,6 +16,7 @@
     height: 25px;
     box-sizing: content-box;
 }
+
 .btnSignIn {
     margin-top: 10px;
     width: 120px;
@@ -23,6 +26,7 @@
     font-size: 16px;
     cursor: pointer;
 }
+
 .btnSignIn:hover,
 .btnSignIn:focus {
     background-color: rgba(140, 215, 231, 0.9528186274509804);
