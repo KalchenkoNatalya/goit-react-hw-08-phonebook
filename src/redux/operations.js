@@ -23,7 +23,7 @@ export const registerUserThunk = createAsyncThunk(
       return data;
     } catch (error) {
       alert(
-        'An error occurred, perhaps such an account is already registered, try another account name or address'
+        'An account with this email already exists, enter another email'
       );
       return thunkApi.rejectWithValue(error.message);
     }
