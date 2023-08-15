@@ -12,7 +12,7 @@ export const FormAddContacts = () => {
     const form = event.currentTarget;
     const name = form.elements.contactName.value;
     const number = form.elements.contactNumber.value;
-    if (contacts.some(contact => contact.name === name))
+    if (contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase()))
       return alert(`Contact with name ${name} already exists `);
     dispatch(addContactThunk({ name, number }));
     form.reset();
